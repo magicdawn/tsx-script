@@ -1,0 +1,63 @@
+{
+  "name": "tsx-script",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
+  "description": "add a script mode to the tsx typescript runner",
+  "author": "magicdawn",
+  "license": "MIT",
+  "homepage": "https://github.com/magicdawn/tsx-script#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/magicdawn/tsx-script.git"
+  },
+  "bugs": {
+    "url": "https://github.com/magicdawn/tsx-script/issues"
+  },
+  "keywords": [
+    "tsx",
+    "ts-node"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "prepare": "husky",
+    "test:dev": "vitest",
+    "test-cover": "vitest run --coverage",
+    "dev": "tsdown --watch",
+    "build": "tsdown",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "devDependencies": {
+    "@magicdawn/eslint-config": "^1.6.2",
+    "@magicdawn/prettier-config": "^0.1.0",
+    "@types/node": "^24.12.2",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^10.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.3",
+    "tsdown": "^0.21.8",
+    "typescript": "^6.0.2",
+    "vitest": "^3.2.4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "unrs-resolver"
+    ]
+  },
+  "lint-staged": {
+    "*.{?(c|m)(j|t)s?(x),json,y?(a)ml}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "!*.{?(c|m)(j|t)s?(x),json,y?(a)ml}": [
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "prettier": "@magicdawn/prettier-config"
+}
