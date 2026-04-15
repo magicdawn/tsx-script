@@ -11,14 +11,27 @@
 ## Install
 
 ```sh
-$ pnpm add tsx-script
+$ pnpm add -g tsx-script
 ```
 
-## API
+## Why
 
-```js
-const tsxScript = require('tsx-script')
-```
+https://github.com/privatenumber/tsx/issues/482
+
+this took is a shortcut for `tsx --tsconfig /dir/for/script/tsconfig.json /dir/for/script/script.ts`
+aka ts-node's
+
+- script mode: resolve tsconfig from script entry
+- cwd mode: resolve tsconfig from cwd, current tsx use cwd
+
+## Usage
+
+require `tsx` installation.
+
+- global install `pnpm add -g tsx tsx-script`
+- project install `pnpm add tsx tsx-script`
+
+then use `tsx-script` or `tsxs` to use this script mode.
 
 ## Changelog
 

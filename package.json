@@ -18,7 +18,10 @@
     "tsx",
     "ts-node"
   ],
-  "main": "index.js",
+  "bin": {
+    "tsx-script": "./dist/cli.js",
+    "tsxs": "./dist/cli.js"
+  },
   "scripts": {
     "test": "vitest run",
     "prepare": "husky",
@@ -32,10 +35,17 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
+  "dependencies": {
+    "es-toolkit": "^1.45.1",
+    "execa": "^9.6.1",
+    "get-tsconfig": "^4.14.0",
+    "yargs": "^18.0.0"
+  },
   "devDependencies": {
     "@magicdawn/eslint-config": "^1.6.2",
     "@magicdawn/prettier-config": "^0.1.0",
     "@types/node": "^24.12.2",
+    "@types/yargs": "^17.0.35",
     "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^10.2.0",
     "husky": "^9.1.7",
