@@ -22,6 +22,9 @@
     "tsx-script": "./dist/cli.js",
     "tsxs": "./dist/cli.js"
   },
+  "files": [
+    "./dist/"
+  ],
   "scripts": {
     "test": "vitest run",
     "prepare": "husky",
