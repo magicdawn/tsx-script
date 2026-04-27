@@ -3,16 +3,22 @@
 import path from 'node:path'
 import { difference } from 'es-toolkit'
 import { $ } from 'execa'
+import fse from 'fs-extra'
 import { findTsconfig } from 'get-tsconfig'
-import yargs from 'yargs'
+
+// no yargs for `--inspect-brk script.ts` make `inspectBrk: script.ts`
 
 main()
 async function main() {
   let args = process.argv.slice(2)
-  const parsed = yargs(args).parseSync()
-  if (parsed._[0]) {
-    const script = path.resolve(parsed._[0].toString())
-    const tsconfigPath = findTsconfig(script)
+  let script: string | undefined
+  script ||= args.find((x) => {
+    if (!x.startsWith('--') && !x.startsWith('-') && fse.existsSync(path.resolve(x))) {
+      return x
+    }
+  })
+  if (script) {
+    const tsconfigPath = findTsconfig(path.resolve(script))
     if (tsconfigPath) {
       args = ['--tsconfig', tsconfigPath, ...args]
     }
@@ -24,5 +30,11 @@ async function main() {
     args = difference(args, ['--verbose'])
   }
 
-  await $({ preferLocal: true, stdio: 'inherit', verbose: verbose ? 'short' : undefined })`tsx ${args}`
+  const $$ = $({
+    preferLocal: true,
+    stdio: 'inherit',
+    verbose: verbose ? 'short' : undefined,
+    reject: false,
+  })
+  await $$`tsx ${args}`
 }
